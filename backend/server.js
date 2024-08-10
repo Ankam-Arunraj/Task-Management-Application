@@ -18,7 +18,7 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/task-app"
     useUnifiedTopology: true,
     tls: true,
     ssl: true,
-    sslValidate: false, // only if you're using self-signed certificates
+    // sslValidate: false, // only if you're using self-signed certificates
 }).then(() => {
     console.log("Connected to MongoDB");
 }).catch((error) => {
