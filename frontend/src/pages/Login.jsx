@@ -43,8 +43,8 @@
 //                     }else{
 //                         navigate("/tasks")
 //                     }
-                   
-                    
+
+
 //                 }else{
 //                     setIsError(true)
 //                     setErrMessage(result.message)
@@ -53,7 +53,7 @@
 //         }else{
 //             return;
 //         }
-       
+
 //     }
 
 //     return (
@@ -94,7 +94,7 @@
 
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -137,31 +137,31 @@ function Login() {
                 },
                 body: JSON.stringify({ email, password }),
             })
-            .then((res) => res.json())
-            .then(async (result) => {
-                if (result.success) {
-                    await localStorage.setItem("loggedInUser", JSON.stringify({
-                        email: result.email, 
-                        userId: result.userId, 
-                        role: result.role,
-                        token: result.token
-                    }));
-                    await localStorage.setItem("isLoggedIn", true);
+                .then((res) => res.json())
+                .then(async (result) => {
+                    if (result.success) {
+                        await localStorage.setItem("loggedInUser", JSON.stringify({
+                            email: result.email,
+                            userId: result.userId,
+                            role: result.role,
+                            token: result.token
+                        }));
+                        await localStorage.setItem("isLoggedIn", true);
 
-                    if (result.role === "admin") {
-                        navigate("/adminTasks");
+                        if (result.role === "admin") {
+                            navigate("/adminTasks");
+                        } else {
+                            navigate("/tasks");
+                        }
                     } else {
-                        navigate("/tasks");
+                        setIsError(true);
+                        setErrMessage(result.message);
                     }
-                } else {
+                })
+                .catch((error) => {
                     setIsError(true);
-                    setErrMessage(result.message);
-                }
-            })
-            .catch((error) => {
-                setIsError(true);
-                setErrMessage("Failed to connect to the server. Please try again later.");
-            });
+                    setErrMessage("Failed to connect to the server. Please try again later.");
+                });
         }
     };
 
@@ -174,29 +174,37 @@ function Login() {
                         <form onSubmit={login}>
                             <div className="mb-3">
                                 <label className="form-label">Email</label>
-                                <input 
-                                    type="text" 
-                                    className="form-control" 
-                                    value={email} 
-                                    onChange={onEmailChange} 
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    value={email}
+                                    onChange={onEmailChange}
                                 />
                             </div>
                             <p className="error-text">{errors?.email}</p>
                             <div className="mb-3">
                                 <label className="form-label">Password</label>
-                                <input 
-                                    type="password" 
-                                    className="form-control" 
-                                    value={password} 
-                                    onChange={onPasswordChange} 
+                                <input
+                                    type="password"
+                                    className="form-control"
+                                    value={password}
+                                    onChange={onPasswordChange}
                                 />
                             </div>
+
+                            <div className="mb-3">
+                                <Link to="/signup">Doesn't have account please go to Signup</Link>
+                            </div>
+                            <p className="error-text">{errors?.rePassword}</p>
+                            <input type="submit" className="btn btn-primary w-100" value="Signup" style={{ background: '#009688', border: '1px solid #009688' }} />
+                            
+                            
                             <p className="error-text">{errors?.password}</p>
-                            <input 
-                                type="submit" 
-                                className="btn btn-primary w-100" 
-                                value="Login" 
-                                style={{ background: '#009688', border: '1px solid #009688' }} 
+                            <input
+                                type="submit"
+                                className="btn btn-primary w-100"
+                                value="Login"
+                                style={{ background: '#009688', border: '1px solid #009688' }}
                             />
                         </form>
                         {isError && (
