@@ -7,7 +7,13 @@ const authRoutes = require("./routes/auth")
 const userTaskRoutes = require("./routes/userTask")
 
 // mongoose.connect("mongodb://localhost:27017/task-app")
-mongoose.connect(process.env.MONGODB_URI, {
+require('dotenv').config();
+
+// Check the MongoDB URI
+console.log("MongoDB URI:", process.env.MONGODB_URI);
+
+// Connect to MongoDB
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/task-app", {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     tls: true,
