@@ -6,7 +6,18 @@ const taskRoutes = require("./routes/task")
 const authRoutes = require("./routes/auth")
 const userTaskRoutes = require("./routes/userTask")
 
-mongoose.connect("mongodb://localhost:27017/task-app")
+// mongoose.connect("mongodb://localhost:27017/task-app")
+mongoose.connect(process.env.MONGODB_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    tls: true,
+    ssl: true,
+    sslValidate: false, // only if you're using self-signed certificates
+}).then(() => {
+    console.log("Connected to MongoDB");
+}).catch((error) => {
+    console.error("Error connecting to MongoDB:", error);
+});
 
 const app = express();
 app.use(express.json())
