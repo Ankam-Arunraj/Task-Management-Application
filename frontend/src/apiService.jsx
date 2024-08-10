@@ -1,4 +1,4 @@
-const API_URL="http://localhost:7000";
+const API_URL="https://task-management-application-ajjn.onrender.com";
 export const apiService = {
     getUserProfile:async function(email){
     const API_ENDPOINT=API_URL+"/auth/profile/"+email;

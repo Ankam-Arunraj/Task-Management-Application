@@ -130,7 +130,7 @@ function Login() {
         setErrors(errors);
 
         if (Object.keys(errors).length === 0) {
-            fetch("http://localhost:7000/auth/login", {
+            fetch("https://task-management-application-ajjn.onrender.com/auth/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

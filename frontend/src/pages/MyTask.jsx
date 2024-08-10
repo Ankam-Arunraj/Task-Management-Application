@@ -176,7 +176,7 @@ function MyTask() {
     const getMyTasks = async () => {
         const user = getUser();
         const token = getAuthToken();
-        fetch("http://localhost:7000/user/task/myTask/" + user?.userId, {
+        fetch("https://task-management-application-ajjn.onrender.com/user/task/myTask/" + user?.userId, {
             headers: {
                 "Authorization": `Bearer ${token}` // Include token if required
             }
@@ -207,7 +207,7 @@ function MyTask() {
     const getTaskSummaryByUser = async () => {
         const user = getUser();
         const token = getAuthToken();
-        fetch("http://localhost:7000/user/task/summary/" + user?.userId, {
+        fetch("https://task-management-application-ajjn.onrender.com/user/task/summary/" + user?.userId, {
             headers: {
                 "Authorization": `Bearer ${token}` // Include token if required
             }
@@ -234,7 +234,7 @@ function MyTask() {
 
     const completeTask = (e, id) => {
         const token = getAuthToken();
-        fetch("http://localhost:7000/user/task/completeTask", {
+        fetch("https://task-management-application-ajjn.onrender.com/user/task/completeTask", {
             method: "PUT",
             headers: {
                 "Content-type": 'Application/Json',
@@ -268,7 +268,7 @@ function MyTask() {
     const getTasksByStatus = async (status) => {
         const user = getUser();
         const token = getAuthToken();
-        fetch(`http://localhost:7000/user/task/${user?.userId}/byStatus/${status}`, {
+        fetch(`https://task-management-application-ajjn.onrender.com/user/task/${user?.userId}/byStatus/${status}`, {
             headers: {
                 "Authorization": `Bearer ${token}` // Include token if required
             }

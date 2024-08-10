@@ -42,7 +42,7 @@ function ChangePassword(){
         let errors = validateField()
         setErrors(errors)
         if(Object.keys(errors).length===0){
-            fetch("http://localhost:7000/auth/changePassword", { method: "PUT", headers: { 'Content-Type': "application/json" }, body: JSON.stringify({email:user.email,currentPassword,newPassword}) }).then(function (res) {
+            fetch("https://task-management-application-ajjn.onrender.com/auth/changePassword", { method: "PUT", headers: { 'Content-Type': "application/json" }, body: JSON.stringify({email:user.email,currentPassword,newPassword}) }).then(function (res) {
                 return res.json()
             }).then(function (result) {
                 if(result._id){

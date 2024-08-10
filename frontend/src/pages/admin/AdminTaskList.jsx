@@ -8,7 +8,7 @@ function AdminTaskList() {
     const [taskSummary, setTaskSummary] = useState({ TotalCount: 0, InProgressCount: 0, CompletedCount: 0, NotStartedCount: 0,AvailableTaskCount:0,AssignedTaskCount:0 })
 
     const getAllTasks = () => {
-        fetch("http://localhost:7000/task/all/").then((res) => {
+        fetch("https://task-management-application-ajjn.onrender.com/task/all/").then((res) => {
             return res.json();
         }).then((result) => {
             setTasks(result)
@@ -16,7 +16,7 @@ function AdminTaskList() {
         })
     }
     const getAllAvailbaleTask = ()=>{
-        fetch("http://localhost:7000/task/available").then((res) => {
+        fetch("https://task-management-application-ajjn.onrender.com/task/available").then((res) => {
             return res.json();
         }).then((result) => {
             setTasks(result)
@@ -24,7 +24,7 @@ function AdminTaskList() {
         })
     }
     const getTaskSummary = () => {
-        fetch(`http://localhost:7000/task/summary`).then((res) => {
+        fetch(`https://task-management-application-ajjn.onrender.com/task/summary`).then((res) => {
             return res.json();
         }).then((result) => {
             console.log(result)
@@ -47,7 +47,7 @@ function AdminTaskList() {
     }, []);
 
     const deleteTask = (e, id) => {
-        fetch("http://localhost:7000/task/" + id, { method: "DELETE" }).then((res) => {
+        fetch("https://task-management-application-ajjn.onrender.com/task/" + id, { method: "DELETE" }).then((res) => {
             return res.text()
         }).then((result) => {
             getAllTasks();
@@ -71,7 +71,7 @@ function AdminTaskList() {
         } else {
             status = "Inprogress"
         }
-        fetch("http://localhost:7000/task/update/" + id, { method: "PUT", headers: { "Content-type": 'Application/Json' }, body: JSON.stringify({ status: status }) }).then((res) => {
+        fetch("https://task-management-application-ajjn.onrender.com/task/update/" + id, { method: "PUT", headers: { "Content-type": 'Application/Json' }, body: JSON.stringify({ status: status }) }).then((res) => {
             return res.json();
         }).then((result) => {
             getAllTasks();
@@ -86,7 +86,7 @@ function AdminTaskList() {
             status = "Inprogress"
         }
 
-        fetch("http://localhost:7000/user/task/assignTask", { method: "POST", headers: { "Content-type": 'Application/Json' }, body: JSON.stringify({ taskId:taskId,userId:user.userId,status: status }) }).then((res) => {
+        fetch("https://task-management-application-ajjn.onrender.com/user/task/assignTask", { method: "POST", headers: { "Content-type": 'Application/Json' }, body: JSON.stringify({ taskId:taskId,userId:user.userId,status: status }) }).then((res) => {
             return res.json();
         }).then((result) => {
             getAllTasks();
@@ -98,7 +98,7 @@ function AdminTaskList() {
     }
 
     const getTasksByStatus = (status) => {
-        fetch("http://localhost:7000/task/byStatus/" + status).then((res) => {
+        fetch("https://task-management-application-ajjn.onrender.com/task/byStatus/" + status).then((res) => {
             return res.json();
         }).then((result) => {
             setTasks(result)

@@ -216,7 +216,7 @@ function TaskList() {
 
     const getAllTasks = async () => {
         try {
-            const response = await fetch("http://localhost:7000/task/all/");
+            const response = await fetch("https://task-management-application-ajjn.onrender.com/task/all/");
             if (!response.ok) throw new Error('Network response was not ok');
             const result = await response.json();
             setTasks(result);
@@ -228,7 +228,7 @@ function TaskList() {
 
     const getAllAvailableTask = async () => {
         try {
-            const response = await fetch("http://localhost:7000/task/available");
+            const response = await fetch("https://task-management-application-ajjn.onrender.com/task/available");
             if (!response.ok) throw new Error('Network response was not ok');
             const result = await response.json();
             setTasks(result);
@@ -240,7 +240,7 @@ function TaskList() {
 
     const getTaskSummary = async () => {
         try {
-            const response = await fetch("http://localhost:7000/task/summary");
+            const response = await fetch("https://task-management-application-ajjn.onrender.com/task/summary");
             if (!response.ok) throw new Error('Network response was not ok');
             const result = await response.json();
             setTaskSummary(result);
@@ -256,7 +256,7 @@ function TaskList() {
 
     const deleteTask = async (e, id) => {
         try {
-            const response = await fetch(`http://localhost:7000/task/${id}`, { method: "DELETE" });
+            const response = await fetch(`https://task-management-application-ajjn.onrender.com/task/${id}`, { method: "DELETE" });
             if (!response.ok) throw new Error('Network response was not ok');
             await response.text();
             getAllTasks();
@@ -278,7 +278,7 @@ function TaskList() {
     const startTask = async (e, id, status) => {
         const newStatus = status === "Inprogress" ? "completed" : "Inprogress";
         try {
-            const response = await fetch(`http://localhost:7000/task/update/${id}`, {
+            const response = await fetch(`https://task-management-application-ajjn.onrender.com/task/update/${id}`, {
                 method: "PUT",
                 headers: { "Content-Type": "Application/Json" },
                 body: JSON.stringify({ status: newStatus }),
@@ -297,7 +297,7 @@ function TaskList() {
         const newStatus = status === "Inprogress" ? "completed" : "Inprogress";
 
         try {
-            const response = await fetch("http://localhost:7000/user/task/assignTask", {
+            const response = await fetch("https://task-management-application-ajjn.onrender.com/user/task/assignTask", {
                 method: "POST",
                 headers: {
                     "Content-Type": "Application/Json",
@@ -319,7 +319,7 @@ function TaskList() {
 
     const getTasksByStatus = async (status) => {
         try {
-            const response = await fetch(`http://localhost:7000/task/byStatus/${status}`);
+            const response = await fetch(`https://task-management-application-ajjn.onrender.com/task/byStatus/${status}`);
             if (!response.ok) throw new Error('Network response was not ok');
             const result = await response.json();
             setTasks(result);

@@ -29,7 +29,7 @@ function CreateTask() {
         let errors = validateTaskField()
         setErrors(errors)
         if(Object.keys(errors).length===0){
-            fetch("http://localhost:7000/task/create", { method: "POST", headers: { 'Content-Type': "application/json" }, body: JSON.stringify(taskData) }).then(function (res) {
+            fetch("https://task-management-application-ajjn.onrender.com/task/create", { method: "POST", headers: { 'Content-Type': "application/json" }, body: JSON.stringify(taskData) }).then(function (res) {
                 return res.json()
             }).then(function (result) {
                 if(result._id){

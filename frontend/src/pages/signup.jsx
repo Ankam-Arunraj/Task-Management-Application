@@ -37,7 +37,7 @@ function Signup() {
     }
 
     const signup = () => {
-        fetch("http://localhost:7000/auth/signup", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(userAuth) }).then((res) => {
+        fetch("https://task-management-application-ajjn.onrender.com/auth/signup", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(userAuth) }).then((res) => {
             return res.json()
         }).then((result) => {
             if (result.success) {

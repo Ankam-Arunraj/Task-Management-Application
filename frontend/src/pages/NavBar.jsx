@@ -110,7 +110,7 @@ function NavBar() {
         let userInfo = await localStorage.getItem("loggedInUser") && JSON.parse(localStorage.getItem("loggedInUser"));
         setUser(userInfo);
         if (userInfo) {
-            fetch("http://localhost:7000/auth/profile/" + userInfo.email, {
+            fetch("https://task-management-application-ajjn.onrender.com/auth/profile/" + userInfo.email, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('token')}`,
                 }
@@ -173,7 +173,7 @@ function NavBar() {
                         <li className="nav-item dropdown">
                             <Link className="nav-link" role="button" onClick={dropDownToggele}>
                                 <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#ddd' }}>
-                                    <img src={`http://localhost:7000/uploads/${profile?.profilepic}`} style={{ width: '100%', height: '100%', borderRadius: '23px' }} alt="Profile" />
+                                    <img src={`https://task-management-application-ajjn.onrender.com/uploads/${profile?.profilepic}`} style={{ width: '100%', height: '100%', borderRadius: '23px' }} alt="Profile" />
                                 </div>
                             </Link>
                             {isToggled && <div className="dropdown-menu" style={{ display: 'block' }}>
