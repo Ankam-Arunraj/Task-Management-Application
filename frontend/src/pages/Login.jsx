@@ -195,8 +195,8 @@ function Login() {
                             <div className="mb-3">
                                 <Link to="/signup">Doesn't have account please go to Signup</Link>
                             </div>
-                            <p className="error-text">{errors?.rePassword}</p>
-                            <input type="submit" className="btn btn-primary w-100" value="Signup" style={{ background: '#009688', border: '1px solid #009688' }} />
+                            
+                            
                             
                             
                             <p className="error-text">{errors?.password}</p>
